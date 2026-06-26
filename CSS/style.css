@@ -125,7 +125,27 @@ header {
     font-size: 22px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    padding-top: 5px;
+}
+.main-header-logo {
+    display: flex;
+    align-items: center; 
+    gap: 15px;
+    font-size: 24px; 
+    cursor: pointer;
+}
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    display: flex;        
+    justify-content: center;
+    align-items: center;
+}
+.logo-circle i {
+    color: forestgreen;
+    font-size: 22px;
 }
 
 .ul-main-header {
@@ -203,13 +223,13 @@ header {
     line-height: 28px;
     font-size: 13px;
 }
-.announcement-bar a {
+.announcement-bar a,.f-end-content a {
     color: lightgreen;
     text-decoration: underline;
     margin-left: 8px;
 }
 .announcement-bar a:hover{
-    font-size: larger;
+    letter-spacing: 2px;
 }
 /* ========== MAIN ========== */
 #Home {
@@ -262,7 +282,7 @@ header {
 /* ========== pages ========== */
 #pages {
     min-height: 50vh;
-    background-color: rgb(177, 226, 43);
+    border-bottom: 1px solid gray;
 }
 
 .pages-contanier {
@@ -444,14 +464,21 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../imegs/wallpa2.jpg);
+    background-position: center;
+    background-size: cover;
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.7);
     transform: rotateY(-180deg);
     backface-visibility: hidden;
     transition: transform 0.6s ease-in-out;
 }
-.product-card:hover .front {
+.product-card:hover .front{
+    opacity: 1;
     transform: rotateY(0deg);
+}
+.product-card:hover a{
+    color: forestgreen;
 }
 .trend-products {
     flex: 1; 
@@ -475,7 +502,7 @@ header {
 #customer {
     height: 50vh;
     width: 100%;
-    background-color: rgb(91, 190, 91);
+    background-color: rgba(64, 255, 64, 0.226);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -533,44 +560,10 @@ header {
     display: flex;
 }
 .rand-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 2px solid #eaeaea; 
-    margin-bottom: 40px;
+    text-align: center;
+    padding: 30px;
 }
 
-.rand-tabs {
-    display: flex;
-    gap: 0px 30px;
-}
-
-.rand-tabs li {
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    padding-bottom: 15px;
-    margin-bottom: -2px;
-    transition: 0.3s;
-}
-
-.rand-tabs li.active::after,
-.rand-tabs li:hover::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: forestgreen;
-}
-.rand-tabs li:hover{
-    color: forestgreen;
-}
-.active{
-    color: forestgreen;
-}
 .product-container {
     width: 100%;
     display: flex;
@@ -609,32 +602,110 @@ header {
     width: 100%;
     height: 75%; 
     perspective: 1000px;
+    overflow: hidden;
 }
-.front, .back {
+.r-front, .r-back {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
 }
-.back {
+.r-back {
     z-index: 1;
-    background-image: url('../imegs/logo-spacex.jpg');
+    background-image: url('../imegs/wallpaSPACEm.jpg');
     background-size: cover;
     background-position: center;
 }
-.front {
+.r-front {
+    z-index: 2;
+    background-image: url(../imegs/wallpaSA.jpg);
+    background-size: cover;
+    background-position: center;
+    transform: translateY(-80%);
+    transition: 1s ease-in-out;
+    opacity: 0;
+}
+.product-card:hover .r-front {
+    opacity: 1;
+    transform: translateY(0);
+}
+.rand-icons i, .product-icons i {
+    flex: 1;
+    height: 100%;
+    font-size: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: rotateY(-180deg);
-    backface-visibility: hidden;
-    transition: transform 0.6s ease-in-out;
+    align-items: center; 
+    transition: 0.3s;
+    cursor: pointer;
+    transition: 1s ease-in-out;
 }
-.product-card:hover .front {
-    transform: rotateY(0deg);
+.middle-icon{
+    border-left: 1.5px solid black; 
+    border-right: 1.5px solid black;
+}
+.rand-icons,.product-icons{
+    z-index: 3;
+    position: absolute;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    width: 60%;
+    height: 50px;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10%;
+    transition: 1s ease-in-out;
+    opacity: 0;
+}
+.product-card:hover .rand-icons,
+.product-card:hover .product-icons{
+    opacity: 1;
+    bottom: 20%;
+}
+.rand-icons i:hover,
+.product-icons i:hover{
+    transition: 0.5s ease-in-out;
+    background-color: forestgreen;
+    animation: iconColorChange 0.5s ease-in-out forwards;
+}
+@keyframes iconColorChange {
+    0% {
+        color: black;
+    }
+    10% {
+        color: white;
+    }
+    20% {
+        color: black;
+    }
+    30% {
+        color: white;
+    }
+    40% {
+        color: black;
+    }
+    50% {
+        color: white;
+    }
+    60% {
+        color: black;
+    }
+    70% {
+        color: white;
+    }
+    80% {
+        color: black;
+    }
+    90% {
+        color: white;
+    }
+    100% {
+        color: white;
+    }
 }
 .rand-products {
     flex: 1; 
@@ -655,13 +726,70 @@ header {
     color: forestgreen;
 }
 
-
+/* ========== New Ieams ========== */
+#New{
+    height: 77vh;
+    border-top: 1px solid rgb(39, 39, 39);
+    background-color: rgba(64, 255, 64, 0.226);
+}
+.new-contanier{
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+.items-contanier{
+    width: 100%;
+    height: 81%;
+    padding: 0px 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.item-container{
+    width: 30%;
+    height: 100%;
+}
+.item-container .img{
+    width: 100%;
+    height: 70%;
+    background-image: url(../imegs/wallpaSPACE.jpg);
+    background-position: center;
+    background-size: cover;
+    transition: 0.5s;
+}
+.img:hover{
+    transform: scale(1.04);
+}
+.iteam-content{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 29px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 27%;
+}
+.iteam-content p{
+    font-size: 17px;
+    color: rgb(54, 54, 54);
+}
+.iteam-content a{
+    text-decoration: underline;
+    color: black;
+}
+.item-container:hover h3{
+    color: forestgreen;
+}
+.iteam-content a:hover{
+    font-size: 30px;
+}
 /* ========== Features ========== */
 #Futueres {
     padding: 40px 0; 
     width: 100%;
     border-top: 1px solid black;
-    background-color: rgb(228, 151, 9);
 }
 .futueres-container {
     width: 80%;
@@ -695,10 +823,10 @@ header {
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .icon-wrapper .original {
-    color: #a0a0a0;
+    color: rgba(0, 0, 0, 0.185);
 }
 .icon-wrapper .clone {
-    color: #0b1c3a;
+    color: black;
 }
 .futuer-contanier:hover .icon-wrapper i {
     transform: translateY(-100%); 
@@ -707,24 +835,128 @@ header {
 footer {
     color: white;
     background-color: rgb(0, 0, 0);
-    height: 60vh;
+    height: 50vh;
 }
 .footer-contanier{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 80%;
     height:100%;
     margin: auto;
 }
-.footer-top{
+.footer-top,.footer-end{
     width: 100%;
+    padding: 10px 5px;
+}
+.footer-top{
+    height: 25%;
+    border-bottom: 1px solid gray;
+    font-size: 25px;
+}
+.footer-end{
+    height: 15%;
+    border-top: 1px solid gray;
+}
+.f-top-content,.f-end-content{
+    width: 95%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 .f-top-content{
-    width: 100%;
-    background-color: yellow;
-    display: flex;
     justify-content: space-between;
+}
+.f-inputes{
+    display: flex;
     align-items: center;
+    height: 50px;
+}
+.head-f-top p{
+    opacity: 0.8;
+}
+.head-f-top,.f-top-icons{
+    font-size: 20px;
+}
+.f-inputes input{
+    width: 400px;
+    height: 100%;
+    font-size: 22px;
+}
+.f-inputes button{
+    width: 150px;
+    height: 100%;
+    margin-left: 10px;
+    background-color: forestgreen;
+    font-size: 22px;
+    line-height: 50px;
+    text-align: center;
+    transition: 0.2s;
+    border: .5px solid gray;
+}
+.f-top-icons i{
+    opacity: 0.7;
+    transition: 0.3s ease-in-out;
+}
+.f-inputes button:hover{
+    transform: scale(1.1);
+}
+.f-top-icons i:hover{
+    transform: scale(1.1);
+    opacity:1;
+}
+.f-end-content{
+    justify-content: center;
+}
+.footer-middle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+}
+.f-middle-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    width: 80%;
+    height: 100%;
+}
+.f-middle-content a{
+    color: white;
+}
+.f-middle-logo{
+    height: 100%;
+    width: 20%;
+    padding: 30px 0px;
+}
+.f-middle-logo i{
+    color: forestgreen;
+}
+.f-end-content a:hover{
+    letter-spacing: 2px;
+}
+.i-twinkling{
+    font-size: 20px;
+    animation: twinkling 5s ease-in-out;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes twinkling {
+    from{
+        color: #000000;
+        transform: scale(1);
+    }
+    to{
+        color: forestgreen;
+        transform: scale(1.3);
+    }
+    
 }
